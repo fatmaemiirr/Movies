@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <link rel="stylesheet" href="style.css">
+    <title>Trend Fimler</title>
+</head>
+    <body>
+        <!-- login -->
+        <div class="login-container">
+          <form id="login-form" class="login-form">
+            <h1>Giriş</h1>
+            <div class="input-group">
+              <label for="login-username">Kullanıcı Adı</label>
+              <input type="text" id="login-username" placeholder="Kullanıcı adınızı giriniz" required>
+            </div>
+            <div class="input-group">
+              <label for="login-password">Şifre</label>
+              <input type="password" id="login-password" placeholder="Şifrenizi giriniz" required>
+            </div>
+            <button type="submit" class="login-button">Giriş Yap</button>
+            <p class="logreg">Hesabınız yok mu? <a href="#" id="switch-to-register">Kayıt Ol</a></p>
+          </form>
+
+  <!---------------------------------------------------------------------------->
+
+         <!-- register -->
+          <form id="register-form" class="login-form" style="display: none;">
+            <h1>Kayıt Ol</h1>
+            <div class="input-group">
+              <label for="register-username">Kullanıcı adı</label>
+              <input type="text" id="register-username" placeholder="Bir kullanıcı adı seçin" required>
+            </div>
+            <div class="input-group">
+              <label for="register-password">Şifre</label>
+              <input type="password" id="register-password" placeholder="Bir şifre seçin" required>
+            </div>
+            <button type="submit" class="login-button">Kayıt Ol</button>
+            <p class="logreg">Zaten bir hesabınız var mı? <a href="#" id="switch-to-login">Giriş Yap</a></p>
+          </form>
+        </div>
+
+  <!---------------------------------------------------------------------------->
+
+        <!-- Menu -->
+        <div id="menu-container">
+          <nav id="menu">
+            <a href="index.html">  <i class="fa fa-film" style="font-size:20px"></i>  &nbsp; Trend Filmler</a>
+            <a href="index.html">Home</a>
+            <a href="movies.html" id="movies">Movies</a>
+            <a href="tvshow.html" id="tv-shows">Tv Shows</a>
+            <a href="people.html" id="people">People</a>
+            <a href="trending.html" id="trending">Trending</a>
+          <div id="search-container">
+            <input type="text" id="search-bar" placeholder="Filmleri ara...">
+            <i class="fa fa-search"> </i> </div>
+            <button id="logoutButton">Oturumu Kapat</button>
+          </nav>
+          </div>
+
+       <!---------------------------------------------------------------------------->
+
+           <!-- Dinamik İçerik Alanı -->
+           <main id="main-content">
+
+            <h5>Aktörler</h5>
+            <!-- Aktör Kartları İçin Alan -->
+            <div id="people-container" style="display: none;" style="margin-top: 20px;">
+              <h5 class="baslik">Aktörler</h5>
+              <div id="actors-list" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+                <!-- Aktör kartları burada oluşturulacak -->
+              </div>
+            </div>
+
+          </main>
+
+  <!---------------------------------------------------------------------------->
+
+       <!-- Swiper -->
+  <div id="movies-container" style="display: none;">
+
+  <!---------------------------------------------------------------------------->
+  
+ <!-- FOOTER -->
+  <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col"> 
+        <a href="index.html" class="footeer"> <i class="fa fa-film" style="font-size:60px"></i> </a>
+      </div>
+      <div class="col">
+        <h4>Movies</h4>
+        <ul>
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Populer</a></li>
+          <li><a href="#">Now Playing</a></li>
+          <li><a href="#">Upcoming</a></li>
+          <li><a href="#">Top Rated</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>TV Shows</h4>
+        <ul>
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Populer</a></li>
+          <li><a href="#">Airing Today</a></li>
+          <li><a href="#">On The Air</a></li>
+          <li><a href="#">Top Rated</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>People</h4>
+        <ul>
+          <li><a href="#">Popular</a></li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>Trending</h4>
+        <ul>
+          <li><a href="#">Movies</a></li>
+          <li><a href="#">TV Shows</a></li>
+        </ul>
+
+    </div>
+  </div>
+</footer>     
+  <!---------------------------------------------------------------------------->
+  
+  <script src="script.js"></script>
+
+</body>
+</html>
+
+
+ 
+
+    
