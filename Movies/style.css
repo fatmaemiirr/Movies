@@ -1,0 +1,976 @@
+    
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; 
+  width: 100%;
+}
+
+body {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  background: url('Photos/bacgrond.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-attachment: fixed; /* Sayfa kaydırıldığında arka plan sabit kalacak */
+}
+
+/* --------------------------------------------------------------------------------- */
+/* LOGİN - REGİSTER */
+.login-container {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  color: #f3f3f3;
+  margin: auto;
+  margin-top: 110px; 
+}
+
+  .login-form h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 93%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #111111;
+    color: #fff;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .options a {
+    font-size: 12px;
+    color: #0066ff;
+    text-decoration: none;
+  }
+  
+  .login-button {
+    width: 100%;
+    padding: 10px;
+    background: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .register-link {
+    color: #003a74;
+    text-decoration: none;
+  }
+  
+  .register-link:hover, .options a:hover {
+    text-decoration: underline;
+  }
+
+/* --------------------------------------------------------------------------------- */
+
+/* MENÜ  */
+#menu {
+  height: 7vh;
+  width:100%;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+
+ 
+ }
+ a{
+     text-decoration: none;
+     color: rgb(252, 254, 255);
+ }
+ 
+ a:hover{
+     color: rgb(117, 117, 117);
+   
+ }
+ 
+ #search-bar{
+     background-color: rgb(0, 0, 0);
+     color: rgb(255, 255, 255);
+     height: 20px;
+     width: 250px;
+     border-radius: 8px;
+ }
+ 
+ #menu-container{
+     width: 100%;
+     display: grid;
+     grid-template-columns: repeat(auto-fit, minmax(250px,04fr));
+     place-content: center;
+     display: none;
+     
+ }
+
+/* --------------------------------------------------------------------------------- */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #menu {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  h2 {
+    width: 100%;
+    height: auto;
+    font-size: 20px;
+    margin: 5px 0;
+  }
+
+  a {
+    font-size: 18px;
+  }
+
+  #search-bar {
+    width: 200px;
+  }
+
+  #menu-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #menu {
+    justify-content: center;
+  }
+
+  h2 {
+    font-size: 16px;
+    padding: 5px;
+  }
+  a {
+    font-size: 14px;
+  }
+
+  #search-bar {
+    width: 150px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  #menu-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+ 
+/* --------------------------------------------------------------------------------- */
+
+/* Apiden çekilen filmlerin görünüm ayarları */
+.swiper {
+  width: 71%;
+  height: 500px;
+  margin-top: 50px;
+  margin-bottom: 0px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #000000;
+  border-radius:5px;  
+  overflow: hidden;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: 85%;
+  object-fit: cover;
+}
+
+.swiper-slide h3 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.swiper-pagination-bullet {
+  background: #ffffff;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------------- */
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .swiper {
+    height: 300px;
+  }
+  .swiper-slide img {
+    height: 60%;
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper {
+    height: 250px;
+  }
+}
+
+/* --------------------------------------------------------------------------------- */
+
+/* Detay ekranı */
+#movie-details-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.movie-details {
+  background-color: #070707;
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px;
+  overflow-y: auto;
+  border-radius: 8px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.movie-details img {
+  width: 100%; 
+  max-width: 500px; 
+  height: 500px; 
+  border-radius: 15px; 
+}
+
+/* Kapama butonu */
+#close-details {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ff0d00;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+#close-details:hover {
+  background-color: #a30b00;
+}
+
+
+/* Detay ekranının açılış kapanış animasyonu */
+.fullscreen-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Açılış animasyonu */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+/* Kapanış animasyonu */
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* --------------------------------------------------------------------------------- */
+
+/* footer */
+.container {
+  max-width: 1170px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+ }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer {
+  background-color: #000000;
+  padding: 20px 15px;
+  text-align: center; 
+}
+.col {
+  width: 25%;
+  padding: 10px 15px;
+  box-sizing: border-box;
+}
+.col h4 {
+  font-size: 15px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 20px; 
+  font-weight: 500;
+  position: relative;
+}
+
+.col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.col ul li a {
+  font-size: 15px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  display: block;
+  transition: all 0.3s ease;
+}
+.col ul li a:hover {
+  color: #7b7b7b;
+  padding-left: 8px;
+}
+
+/* --------------------------------------------------------------------------------- */
+
+/* Mobil uyumluluk düzenlemeleri */
+@media (max-width: 767px) {
+  .col {
+    width: 50%; /* Daha küçük ekranlarda her satıra iki sütun */
+  }
+}
+
+@media (max-width: 574px) {
+  .col {
+    width: 100%; /* Çok küçük ekranlarda her sütun tüm genişliği kaplar */
+  }
+  .footer {
+    text-align: left; /* Küçük ekranlarda sol hizalı */
+  }
+}
+
+/* --------------------------------------------------------------------------------- */
+
+/* HEADER FRİENDS */
+header {
+    position: relative;
+    width: 71%;
+    height: 60%;
+    margin: auto;
+    border: 1px solid rgb(73, 73, 73);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0px 0px 25px -8px #000000;
+    margin-top: 40px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 5px;  
+     color: #ffffff;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('Photos/friends.jpg') no-repeat center center/cover;
+    opacity: 0.9;
+    z-index: -1;
+  }
+
+  header::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #000000);
+    z-index: -1;
+  }
+
+/* YAZILARIN CSSİ */
+
+    .information{
+    position:relative ;
+    color: #ffffff;
+    margin-top: 50px;
+    padding-left: 50px;
+
+  }
+
+  .information h1{
+    font-size: 100px;
+    margin-bottom: 0px;
+  }
+  .information p{
+    font-size: 15px;
+    width: 355px;
+    word-break: break-all;
+    
+  }
+  .information.detail{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .detail p{
+    font-size: 20px;
+    margin-right: 10px;
+   } 
+   
+/* ------------------------------------------------------------------------- */
+
+/* Responsive Design for Header and Information */
+@media (max-width: 768px) {
+  header {
+    width: 90%; 
+    height: auto;
+    margin-top: 20px;
+    
+  }
+
+  .information {
+    margin-top: 30px;
+    padding-left: 20px;
+  }
+
+  .information h1 {
+    font-size: 50px;
+  }
+
+  .information p {
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .detail p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .information {
+    margin-top: 20px;
+    padding-left: 10px;
+  }
+
+  .information h1 {
+    font-size: 30px;
+  }
+  .information p {
+    font-size: 10px;
+    width: 100%;
+  }
+
+  .detail p {
+    font-size: 14px;
+  }
+}
+
+
+.detay-buton{
+  background-color: #fff;
+  color: #000000;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+/* ------------------------------------------------------------------------- */
+ 
+/* AKTÖR LİSTESİ */
+
+h5{
+  color: #ffffff;
+  align-items: center;
+  font-size: 60px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;  
+ }
+
+#actors-list {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+  justify-content: space-around; 
+}
+
+#actors-list div {
+  flex: 0 0 calc(20% - 10px); /* 4'lü olacak şekilde genişlik ayarı */
+  border: 1px solid #0a0a0a;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  background-color: #000000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  height: 450px;
+  width: 150px;
+  margin-bottom: 60px;
+  position: relative; 
+  overflow: hidden; 
+}
+
+#actors-list div:hover {
+  transform: scale(1.05);
+  background-color: #1c1c1c;
+}
+
+ img {
+  width: 100%; 
+  height: 350px; 
+  border-radius: 5px; 
+  background: rgba(0, 0, 0, 1.5); 
+  pointer-events: none;   
+}
+
+p{
+  color: #ffffff;
+  font-size: 30px;
+}
+
+/* ------------------------------------------------------------------------- */
+
+/* login register paragraf ayarı */
+.logreg{
+  font-size: 16px;
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------------- */
+ 
+/* HTML lerin içerik alanı */
+main {
+  margin: 10px auto 50px auto; /* Menü ve footer arası boşluk */
+  padding: 20px;
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------------------- */
+
+/* ayarlar - çıkış yapma butonu */
+#logoutButton{
+  background-color: #000000;
+  border-radius: 10px;
+  border-color: #bebebe;
+  color: #ffffff;
+}
+
+/* ------------------------------------------------------------------------- */
+/* HEADER HIMYM - SQUİD GAME */
+
+.double-header {
+  display: flex;            
+  justify-content: center;  
+  align-items: center;      
+  gap: 20px;               
+  height: 700px;            
+  margin: 0px;             
+  padding: 10px;           
+}
+
+.header-twone,
+.header-two {
+  position: relative;       
+  width: 35%;
+  height: 70%;
+  display: inline-block;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;        
+  border-radius: 8px;
+}
+
+.header-twone {
+  background: url('Photos/himym.webp') no-repeat center center/cover; 
+}
+
+.header-two {
+  background: url('Photos/spuidgame.webp') no-repeat center center/cover; 
+}
+
+/* Siyah opaklık efekti */
+.header-twone::before,
+.header-two::before {
+  content: '';   /* Pseudo-element içeriği */
+  position: absolute;       
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1;               
+}
+
+/* H1 ve P Etiketleri */
+.header-twone h1, .header-twone p,
+.header-two h1, .header-two p {
+  position: relative;       
+  z-index: 2;              
+  color: white;            
+  margin: 0 0 0 0;      
+  text-align: left;      
+  position: absolute;      
+  bottom: 75px;            
+  left: 20px;              
+  
+
+}
+
+/* H1 Özel Stili */
+.header-twone h1, .header-two h1 {
+  font-size: 55px;         
+  font-weight: bold;        
+  margin-bottom: 40px
+}
+
+/* P Özel Stili */
+.header-twone p, .header-two p {
+  font-size: 16px;         
+  font-weight: normal;     
+}
+
+/* "Detay" Butonu */
+.detaytwo-buton {
+  display: inline-block;
+  margin-top: 10px;         
+  padding: 10px 15px;      
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;      
+  transition: background-color 0.3s;
+  position: relative;       
+  z-index: 2;               
+  position: absolute;       
+  bottom: 20px;            
+  left: 20px;               
+ 
+}
+
+.detaytwo-buton:hover {
+  color: #8f8f8f;
+}
+
+/* ------------------------------------------------------------------------- */
+
+/* HEADER THE WALKİNG DEAD - LUCİFER */
+
+.double-headertwo {
+  display: flex;            
+  justify-content: center;  
+  align-items: center;      
+  gap: 20px;               
+  height: 700px;            
+  margin: 0px;            
+  padding: 10px;           
+}
+
+.one,
+.two {
+  position: relative;       
+  width: 35%;
+  height: 70%;
+  display: inline-block;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;       
+  border-radius: 8px;
+}
+
+.one {
+  background: url('Photos/thewalkingdead.webp') no-repeat center center/cover; 
+}
+
+.two {
+  background: url('Photos/lucifer.jpg') no-repeat center center/cover; 
+}
+
+/* Siyah opaklık efekti */
+.one::before,
+.two::before {
+  content: '';           
+  position: absolute;       
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1;          
+}
+
+/* H1 ve P Etiketleri */
+.one h1, .one p,
+.two h1, .two p {
+  position: relative;      
+  z-index: 2;             
+  color: white;           
+  margin: 0 0 0 0;      
+  text-align: left;   
+  position: absolute;    
+  bottom: 75px;            
+  left: 20px;             
+
+}
+
+/* H1 Özel Stili */
+.one h1, .two h1 {
+  font-size: 55px;        
+  font-weight: bold;       
+  margin-bottom: 40px
+}
+
+/* P Özel Stili */
+.one p, .two p {
+  font-size: 16px;        
+  font-weight: normal;   
+}
+
+/* "Detay" Butonu */
+.detaytwo-buton {
+  display: inline-block;
+  margin-top: 10px;        
+  padding: 10px 15px;     
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 5px;     
+  transition: background-color 0.3s;
+  position: relative;    
+  z-index: 2;           
+  position: absolute;  
+  bottom: 20px;         
+  left: 20px;         
+ 
+}
+
+.detaytwo-buton:hover {
+  color: #8f8f8f;
+}
+
+.double-header, .double-headertwo {
+  display: flex;          
+  justify-content: center;
+  align-items: center;  
+  gap: 20px;        
+  height: auto;    
+  margin: 20px 0;    
+  padding: 10px;    
+ 
+}
+
+.header-twone, .header-two, .one, .two {
+  height: calc(70vh - 40px); /* Kapsayıcının alttan ve üstten boşluklara göre yeniden boyutlanması */
+}
+
+/* ------------------------------------------------------------------------- */
+
+/* HEADER PEAKY BLİNDERS */
+.headers {
+  position: relative;
+  width: 71%;
+  height: 60%;
+  margin: auto;
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 25px -8px #000000;
+  margin-top: 40px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 5px;
+  color: #ffffff;
+  margin-bottom: 100px;
+ 
+}
+
+.headers::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  background: url('Photos/peakyblinders.jpg') no-repeat center center/cover;
+  z-index: -1;
+}
+
+.headers::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #000000);
+  z-index: -1;
+}
+ 
+/* YAZILARIN CSSİ */
+  .informations{
+  position:relative ;
+  color: #ffffff;
+  margin-top: 50px;
+  padding-left: 50px;
+
+}
+
+.informations h1{
+  font-size: 100px;
+  margin-bottom: 0px;
+}
+.informations p{
+  font-size: 15px;
+  width: 355px;
+  word-break: break-all;
+  
+}
+.informations.details{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+
+.details p{
+  font-size: 20px;
+  margin-right: 10px;
+ } 
+ 
+/* ------------------------------------------------------------------------- */
+/* Responsive Design for Header and Information */
+@media (max-width: 768px) {
+headers {
+  width: 90%;
+  height: auto;
+  margin-top: 20px;
+  
+}
+
+.informations {
+  margin-top: 30px;
+  padding-left: 20px;
+}
+
+.informations h1 {
+  font-size: 50px;
+}
+
+.informations p {
+  font-size: 12px;
+  width: 100%;
+}
+
+.details p {
+  font-size: 16px;
+}
+}
+
+@media (max-width: 480px) {
+headers {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+.informations {
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
+.informations h1 {
+  font-size: 30px;
+}
+.informations p {
+  font-size: 10px;
+  width: 100%;
+}
+
+.details p {
+  font-size: 14px;
+}
+}
+
+.detays-buton{
+background-color: #fff;
+color: #000000;
+padding: 15px;
+border-radius: 15px;
+
+}
