@@ -85,6 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
     const userData = JSON.parse(localStorage.getItem(username));
+
+    // Footer referansı
+const footer = document.querySelector(".footer");
+// header referansı
+const header = document.querySelector('.header')
+const doubleheader = document.querySelector('.double-header')
+const doubleheadertwo = document.querySelector('.double-headertwo')
+const headers = document.querySelector('.headers')
+//menü referansı
+const searchContainer = document.getElementById("search-container");
   
     if (userData && userData.username === username && userData.password === password) {
       console.log("Giriş başarılı!")
