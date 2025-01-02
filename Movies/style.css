@@ -1,4 +1,11 @@
     
+.visible {
+   display: block;
+ }
+ .hidden {
+   display: none;
+ }
+
 html, body {
   margin: 0;
   padding: 0;
