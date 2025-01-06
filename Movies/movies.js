@@ -1,4 +1,9 @@
- 
+// Login Register Referansları
+const loginForm = document.getElementById("login-form");
+const registerForm = document.getElementById("register-form");
+const switchToRegister = document.getElementById("switch-to-register");
+const switchToLogin = document.getElementById("switch-to-login");
+const loginContainer = document.querySelector(".login-container"); 
 // Movies referansları
 const moviesContainer = document.getElementById("movies-container");
 const moviesGrid = document.getElementById("movies-grid");
@@ -7,10 +12,6 @@ const moviesList = document.getElementById("movies-list");
 const movieDetailsContainer = document.getElementById("movie-details-container");
 const movieDetails = document.getElementById("movie-details");
 const closeDetails = document.getElementById("close-details");
-// Search referansı
-const searchBar = document.getElementById("search-bar");
-const menuContainer = document.getElementById("menu-container");
-
 // Footer referansı
 const footer = document.querySelector(".footer");
 // header referansı
@@ -18,9 +19,17 @@ const header = document.querySelector('.header')
 const doubleheader = document.querySelector('.double-header')
 const doubleheadertwo = document.querySelector('.double-headertwo')
 const headers = document.querySelector('.headers')
+// people referansı
+const peopleContainer = document.getElementById('people-container');
+const actorsList = document.getElementById('actors-list');
+const mainContent = document.getElementById('main-contend');
+// Search referansı
+const searchBar = document.getElementById("search-bar");
+const menuContainer = document.getElementById("menu-container");
 //menü referansı
 const searchContainer = document.getElementById("search-container");
-
+  //çıkış butonu referansı
+  const logoutButton = document.getElementById("logoutButton");
 // -----------------------------------------------------------------------------------------------------
 
 // Global değişkenler
