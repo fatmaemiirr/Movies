@@ -7,7 +7,6 @@ html, body {
 }
 
 body {
-  display: block;
   justify-content: center;
   align-items: center;
   background: url('Photos/bacgrond.jpg') no-repeat center center fixed;
@@ -15,21 +14,18 @@ body {
   background-attachment: fixed; /* Sayfa kaydırıldığında arka plan sabit kalacak */
 }
 
-    
 .hidden {
-  display: none; /* Elementi tamamen gizler */
+  display: none !important;
 }
 
-.visible-menu-container {
-  display: flex; /* Menü konteyneri için flexbox düzeni */
-}
-
-.hidden {
-  display: none;
-}
 .visible {
-  display: block;
+  display: block !important; /* Flex ya da diğer stiller gerekiyorsa uygun şekilde değiştirin */
 }
+
+.flex {
+  display: flex !important;
+}
+
 
 
 
@@ -111,7 +107,6 @@ body {
   color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: space-around;
 
  
@@ -138,8 +133,8 @@ body {
      width: 100%;
      display: grid;
      grid-template-columns: repeat(auto-fit, minmax(250px,04fr));
+     gap: 10px;
      place-content: center;
-     display: none;
      
  }
 

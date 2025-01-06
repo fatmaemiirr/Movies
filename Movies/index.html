@@ -12,42 +12,7 @@
     <title>Trend Fimler</title>
 </head>
     <body>
-        <!-- login -->
-        <div class="login-container">
-          <form id="login-form" class="login-form">
-            <h1>Giriş</h1>
-            <div class="input-group">
-              <label for="login-username">Kullanıcı Adı</label>
-              <input type="text" id="login-username" placeholder="Kullanıcı adınızı giriniz" required>
-            </div>
-            <div class="input-group">
-              <label for="login-password">Şifre</label>
-              <input type="password" id="login-password" placeholder="Şifrenizi giriniz" required>
-            </div>
-            <button type="submit" class="login-button">Giriş Yap</button>
-            <p class="logreg">Hesabınız yok mu? <a href="#" id="switch-to-register">Kayıt Ol</a></p>
-          </form>
-
-    <!---------------------------------------------------------------------------------------------------------->
-
-         <!-- register -->
-          <form id="register-form" class="login-form" style="display: none;">
-            <h1>Kayıt Ol</h1>
-            <div class="input-group">
-              <label for="register-username">Kullanıcı adı</label>
-              <input type="text" id="register-username" placeholder="Bir kullanıcı adı seçin" required>
-            </div>
-            <div class="input-group">
-              <label for="register-password">Şifre</label>
-              <input type="password" id="register-password" placeholder="Bir şifre seçin" required>
-            </div>
-            <button type="submit" class="login-button">Kayıt Ol</button>
-            <p class="logreg">Zaten bir hesabınız var mı? <a href="#" id="switch-to-login">Giriş Yap</a></p>
-          </form>
-        </div>
-
-  <!---------------------------------------------------------------------------------------------------------->
-
+  
         <!-- Menu -->
         <div id="menu-container">
           <nav id="menu">
@@ -60,7 +25,7 @@
           <div id="search-container">
             <input type="text" id="search-bar" placeholder="Filmleri ara...">
             <i class="fa fa-search"> </i> </div>
-            <button id="logoutButton"> <i class="fa fa-cog fa-spin" style="font-size:30px"></i></button>
+            <button id="logoutButton"> <i class="fa fa-cog fa-spin" style="font-size:30px"></i>Çıkış yap</button>
           </nav>
           </div>
 
@@ -197,8 +162,8 @@
   <script src="script.js"></script>
   <script src="login.js"></script>
   <script src="movies.js"></script>
-  <script src="actors.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="actors.js"></script>
 
 </body>
 </html>

@@ -3,31 +3,33 @@ const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const switchToRegister = document.getElementById("switch-to-register");
 const switchToLogin = document.getElementById("switch-to-login");
-const loginContainer = document.querySelector(".login-container"); 
+const loginContainer = document.querySelector(".login-container");
 // Movies referansları
 const moviesContainer = document.getElementById("movies-container");
 const moviesGrid = document.getElementById("movies-grid");
 const moviesList = document.getElementById("movies-list");
-//Details referansı
+// Details referansı
 const movieDetailsContainer = document.getElementById("movie-details-container");
 const movieDetails = document.getElementById("movie-details");
 const closeDetails = document.getElementById("close-details");
 // Footer referansı
 const footer = document.querySelector(".footer");
-// header referansı
-const header = document.querySelector('.header')
-const doubleheader = document.querySelector('.double-header')
-const doubleheadertwo = document.querySelector('.double-headertwo')
-const headers = document.querySelector('.headers')
-// people referansı
-const peopleContainer = document.getElementById('people-container');
-const actorsList = document.getElementById('actors-list');
-const mainContent = document.getElementById('main-contend');
+// Header referansı
+const header = document.querySelector(".header");
+const doubleheader = document.querySelector(".double-header");
+const doubleheadertwo = document.querySelector(".double-headertwo");
+const headers = document.querySelector(".headers");
+// People referansı
+const peopleContainer = document.getElementById("people-container");
+const actorsList = document.getElementById("actors-list");
+const mainContent = document.getElementById("main-content");
 // Search referansı
 const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
-//menü referansı
+// Menü referansı
 const searchContainer = document.getElementById("search-container");
+//çıkış işlemi referansı
+const logoutButton = document.getElementById("logoutButton");
 
 // Görünürlük sınıfı ekleme/kaldırma fonksiyonları
 function showElement(element) {
@@ -40,74 +42,53 @@ function hideElement(element) {
   element.classList.add("hidden");
 }
 
-// login - register
-document.addEventListener("DOMContentLoaded", () => {  
-  const isLoggedIn = localStorage.getItem("isLoggedIn");   // Daha önce giriş yapılmış mı kontrol et
-  
-  if (isLoggedIn === "true") {    // Eğer giriş yapılmışsa anasayfayı göster
-    console.log("Kullanıcı oturumu açık. Anasayfa görüntüleniyor.");
-    hideElement(loginContainer); 
-    showElement(moviesContainer); 
-  
-    // Menü, arama, footer ve header görünür yap
-    showElement(menuContainer);
-    showElement(searchContainer);
-    showElement(footer);
-    showElement(header);
-    showElement(doubleheader);
-    showElement(doubleheadertwo);
-    showElement(headers);
+// Sayfa yüklendiğinde giriş durumunu kontrol et
+document.addEventListener("DOMContentLoaded", () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (isLoggedIn === "true") {
+    // Giriş yapılmışsa index.html'e yönlendir
+    console.log("Kullanıcı oturumu açık. Index sayfasına yönlendiriliyor.");
+    window.location.href = "index.html";
   } else {
-    console.log("Kullanıcı oturumu kapalı. Giriş ekranı görüntüleniyor.");
-    // Eğer giriş yapılmamışsa sadece giriş ekranını göster
-    showElement(loginContainer);
-    hideElement(moviesContainer);
-    hideElement(footer);
-    hideElement(header);
-    hideElement(doubleheader);
-    hideElement(doubleheadertwo);
-    hideElement(headers);
-    hideElement(menuContainer);
-    hideElement(searchContainer);
+    console.log("Kullanıcı oturumu kapalı. Login sayfası görüntüleniyor.");
   }
 });
 
-// login 
-switchToRegister.addEventListener("click", (e) => {   //kayıt ol formu görünür
+// Login ve Register form geçişleri
+switchToRegister.addEventListener("click", (e) => {
   e.preventDefault();
   hideElement(loginForm);
   showElement(registerForm);
 });
 
-// register 
-switchToLogin.addEventListener("click", (e) => {  //giriş yap formu görünür
+switchToLogin.addEventListener("click", (e) => {
   e.preventDefault();
   hideElement(registerForm);
   showElement(loginForm);
 });
 
-// Kayıt İşlemini Yap
+// Kayıt işlemi
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const username = document.getElementById("register-username").value;
   const password = document.getElementById("register-password").value;
 
-  const userData = localStorage.getItem(username);     //localde kullanıcı adıyla veri var mı kontol
-  if (userData && JSON.parse(userData).username === username) {    //eğer varsa
+  const userData = localStorage.getItem(username);
+  if (userData && JSON.parse(userData).username === username) {
     alert("Kullanıcı adı zaten mevcut. Lütfen farklı bir tane seçin.");
-    return;   //sonlandır
+    return;
   }
 
-  // Kullanıcı verilerini localStorage'a kaydet
-  localStorage.setItem(username, JSON.stringify({ username: username, password: password }));  //kullanıcı adı anahtarıyla  kaydet
+  localStorage.setItem(username, JSON.stringify({ username, password }));
   alert("Kayıt başarılı! Artık giriş yapabilirsiniz.");
   registerForm.reset();
   hideElement(registerForm);
-  showElement(loginForm); 
+  showElement(loginForm);
 });
 
-// Giriş başarılı olduğunda film sayfasını göster
+// Giriş işlemi
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -115,44 +96,25 @@ loginForm.addEventListener("submit", (e) => {
   const password = document.getElementById("login-password").value;
   const userData = JSON.parse(localStorage.getItem(username));
 
-  // Footer ve diğer eleman referansları
-  const footer = document.querySelector(".footer");
-  const header = document.querySelector('.header');
-  const doubleheader = document.querySelector('.double-header');
-  const doubleheadertwo = document.querySelector('.double-headertwo');
-  const headers = document.querySelector('.headers');
-  const searchContainer = document.getElementById("search-container");
-
   if (userData && userData.username === username && userData.password === password) {
-    console.log("Giriş başarılı!")
-    alert(`Hoşgeldiniz, ${username}! Giriş yaptınız.`);
-    localStorage.setItem("isLoggedIn", "true"); // Kullanıcının giriş yaptığını işaretle
-    loginForm.reset();
-
-    // Giriş ekranını gizle ve afişler sayfasını göster
-    hideElement(loginContainer);
-    showElement(moviesContainer);
-
-    // Menü, arama, footer ve header görünür yap
-    showElement(menuContainer);
-    showElement(searchContainer);
-    showElement(footer);
-    showElement(header);
-    showElement(doubleheader);
-    showElement(doubleheadertwo);
-    showElement(headers);
-
+    console.log("Giriş başarılı!");
+    alert(`Hoşgeldiniz, ${username}!`);
+    localStorage.setItem("isLoggedIn", "true"); // Kullanıcının giriş durumunu kaydet
+    window.location.href = "index.html"; // Giriş başarılı, index.html'e yönlendir
   } else {
-    console.log("Giriş başarısız!")
+    console.log("Giriş başarısız!");
     alert("Geçersiz kullanıcı adı veya şifre. Lütfen tekrar deneyin.");
   }
 });
 
-// Kullanıcının oturumu kapatmasını sağla
-logoutButton.addEventListener("click", () => {
-  console.log("Kullanıcı oturumu kapatılıyor.");
-  localStorage.removeItem("isLoggedIn");  // Giriş durumunu belirten "isLoggedIn" anahtarını `localStorage`'dan kaldır
-  console.log("Oturum kapatma başarılı. Kullanıcı giriş ekranına yönlendiriliyor.");
-  alert("Başarıyla çıkış yaptınız!");
-  window.location.href = "index.html";  //sayfa giriş yapılmamış duruma gelir
-});
+// Çıkış işlemi
+if (logoutButton) {
+  logoutButton.addEventListener("click", () => {
+    console.log("Kullanıcı oturumu kapatılıyor.");
+    localStorage.removeItem("isLoggedIn"); // Oturum durumunu temizle
+    alert("Başarıyla çıkış yaptınız!");
+    window.location.href = "login.html"; // Çıkış sonrası login.html'e yönlendir
+  });
+} else {
+  console.error("Çıkış butonu bulunamadı!");
+}
