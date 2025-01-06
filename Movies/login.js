@@ -118,3 +118,9 @@ if (logoutButton) {
 } else {
   console.error("Çıkış butonu bulunamadı!");
 }
+
+
+// document.getElementById('logoutButton').addEventListener('click', function() {
+//   alert('Çıkış yapılıyor...');
+//   window.location.href = 'login.html';
+// });
