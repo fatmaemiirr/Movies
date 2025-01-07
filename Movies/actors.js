@@ -28,8 +28,8 @@ const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
 //menü referansı
 const searchContainer = document.getElementById("search-container");
-  //çıkış butonu referansı
-  const logoutButton = document.getElementById("logoutButton");
+//çıkış işlemi referansı
+const logoutButton = document.getElementById("logoutButton");
 
   // -----------------------------------------------------------------------------------------------------
 

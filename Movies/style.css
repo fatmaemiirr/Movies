@@ -643,6 +643,9 @@ main {
   border-radius: 10px;
   border-color: #bebebe;
   color: #ffffff;
+  pointer-events: auto;
+  display: block;
+
 }
 
 /* ------------------------------------------------------------------------- */

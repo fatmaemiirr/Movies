@@ -14,20 +14,24 @@ const movieDetails = document.getElementById("movie-details");
 const closeDetails = document.getElementById("close-details");
 // Footer referansı
 const footer = document.querySelector(".footer");
-// Header referansı
-const header = document.querySelector('.header');
-const doubleheader = document.querySelector('.double-header');
-const doubleheadertwo = document.querySelector('.double-headertwo');
-const headers = document.querySelector('.headers');
-// People referansı
+// header referansı
+const header = document.querySelector('.header')
+const doubleheader = document.querySelector('.double-header')
+const doubleheadertwo = document.querySelector('.double-headertwo')
+const headers = document.querySelector('.headers')
+// people referansı
 const peopleContainer = document.getElementById('people-container');
 const actorsList = document.getElementById('actors-list');
 const mainContent = document.getElementById('main-contend');
 // Search referansı
 const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
-// Çıkış butonu referansı
+//menü referansı
+const searchContainer = document.getElementById("search-container");
+//çıkış işlemi referansı
 const logoutButton = document.getElementById("logoutButton");
+
+// -------------------------------------------------------------------------------------------------
 
 // Görünürlük fonksiyonları
 function toggleVisibility(element, isVisible) {
@@ -35,23 +39,29 @@ function toggleVisibility(element, isVisible) {
   element.classList.toggle('visible', isVisible);
 }
 
+// -------------------------------------------------------------------------------------------------
+
 // Menü görünürlüğünü güncelle
 function updateMenuVisibility() {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
   
-  toggleVisibility(menuContainer, isLoggedIn);
-  toggleVisibility(loginContainer, !isLoggedIn);
-  if (mainContent) {
-    toggleVisibility(mainContent, isLoggedIn);
+  toggleVisibility(scriptmenuContainer, isLoggedIn);
+  toggleVisibility(scriptloginContainer, !isLoggedIn);
+  if (scriptmainContent) {
+    toggleVisibility(scriptmainContent, isLoggedIn);
   }
 }
+
+// -------------------------------------------------------------------------------------------------
 
 // Footer görünürlüğünü güncelle
 function ensureFooterVisibility() {
   const isLoginPage = window.location.pathname.includes('login.html');
-  footer.classList.toggle('hidden', isLoginPage);
-  footer.classList.toggle('visible', !isLoginPage);
+  scriptfooter.classList.toggle('hidden', isLoginPage);
+  scriptfooter.classList.toggle('visible', !isLoginPage);
 }
+
+// -------------------------------------------------------------------------------------------------
 
 // Sayfa yüklendiğinde işlemleri başlat
 document.addEventListener('DOMContentLoaded', () => {
@@ -59,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ensureFooterVisibility();
 
   // Giriş formu gönderildiğinde
-  loginForm.addEventListener("submit", (e) => {
+  scriptloginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const username = document.getElementById("login-username").value;
     const password = document.getElementById("login-password").value;
@@ -74,8 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // -------------------------------------------------------------------------------------------------
+
   // Kayıt formu gönderildiğinde
-  registerForm.addEventListener("submit", (e) => {
+  scriptregisterForm.addEventListener("submit", (e) => {
     e.preventDefault();
     const username = document.getElementById("register-username").value;
     const password = document.getElementById("register-password").value;
@@ -85,28 +97,29 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       localStorage.setItem(username, JSON.stringify({ username, password }));
       alert("Kayıt başarılı! Giriş yapabilirsiniz.");
-      toggleVisibility(registerForm, false);
-      toggleVisibility(loginForm, true);
+      toggleVisibility(scriptregisterForm, false);
+      toggleVisibility(scriptloginForm, true);
     }
   });
 
-  // Oturum kapatma
-  logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("isLoggedIn");
-    alert("Başarıyla çıkış yaptınız!");
-    updateMenuVisibility();
-  });
+  // -------------------------------------------------------------------------------------------------
+
+
+
+  // -------------------------------------------------------------------------------------------------
 
   // Formlar arası geçiş
-  switchToRegister.addEventListener("click", (e) => {
+  scriptswitchToRegister.addEventListener("click", (e) => {
     e.preventDefault();
-    toggleVisibility(loginForm, false);
-    toggleVisibility(registerForm, true);
+    toggleVisibility(scriptloginForm, false);
+    toggleVisibility(scriptregisterForm, true);
   });
 
-  switchToLogin.addEventListener("click", (e) => {
+  scriptswitchToLogin.addEventListener("click", (e) => {
     e.preventDefault();
-    toggleVisibility(registerForm, false);
-    toggleVisibility(loginForm, true);
+    toggleVisibility(scriptregisterForm, false);
+    toggleVisibility(scriptloginForm, true);
   });
 });
+
+// -------------------------------------------------------------------------------------------------
