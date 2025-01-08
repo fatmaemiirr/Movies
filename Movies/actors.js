@@ -1,9 +1,4 @@
-// Login Register Referansları
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-const switchToRegister = document.getElementById("switch-to-register");
-const switchToLogin = document.getElementById("switch-to-login");
-const loginContainer = document.querySelector(".login-container"); 
+
 // Movies referansları
 const moviesContainer = document.getElementById("movies-container");
 const moviesGrid = document.getElementById("movies-grid");
@@ -22,7 +17,7 @@ const headers = document.querySelector('.headers')
 // people referansı
 const peopleContainer = document.getElementById('people-container');
 const actorsList = document.getElementById('actors-list');
-const mainContent = document.getElementById('main-contend');
+const mainContent = document.getElementById('main-content');
 // Search referansı
 const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
@@ -31,13 +26,12 @@ const searchContainer = document.getElementById("search-container");
 //çıkış işlemi referansı
 const logoutButton = document.getElementById("logoutButton");
 
-  // -----------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------
 
 // aktör kartları people
 document.addEventListener('DOMContentLoaded', async () => {
     // Eğer people.html'deysek, aktör kartlarını yükle
-    const peopleContainer = document.getElementById('people-container');
-    const actorsList = document.getElementById('actors-list');
+
     if (peopleContainer && actorsList) {
       const url = 'https://moviesdatabase.p.rapidapi.com/actors';
       const options = {
@@ -55,7 +49,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // API'den veri çek
         const response = await fetch(url, options);
         const data = await response.json();
-        const actors = data.results || [];
+        const actors = Array.isArray(data.results) ? data.results : []; //api çağrısını kontol et
   
         // Aktör kartlarını oluştur
         actors.forEach(actor => {

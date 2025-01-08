@@ -3,7 +3,7 @@ const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
 const switchToRegister = document.getElementById("switch-to-register");
 const switchToLogin = document.getElementById("switch-to-login");
-const loginContainer = document.querySelector(".login-container"); 
+const loginContainer = document.querySelector(".login-container");
 // Movies referansları
 const moviesContainer = document.getElementById("movies-container");
 const moviesGrid = document.getElementById("movies-grid");
@@ -22,7 +22,7 @@ const headers = document.querySelector('.headers')
 // people referansı
 const peopleContainer = document.getElementById('people-container');
 const actorsList = document.getElementById('actors-list');
-const mainContent = document.getElementById('main-contend');
+const mainContent = document.getElementById('main-content');
 // Search referansı
 const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
@@ -30,6 +30,24 @@ const menuContainer = document.getElementById("menu-container");
 const searchContainer = document.getElementById("search-container");
 //çıkış işlemi referansı
 const logoutButton = document.getElementById("logoutButton");
+
+// -------------------------------------------------------------------------------------------------
+
+// Sayfa yüklendiğinde işlemleri başlat
+// login.html dosyası
+
+document.addEventListener("DOMContentLoaded", () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (isLoggedIn === "true") {
+    console.log("Kullanıcı oturumu açık. Anasayfaya yönlendiriliyor.");
+    window.location.href = "index.html";
+  } else {
+    console.log("Kullanıcı oturumu kapalı. Login sayfası görüntüleniyor.");
+    showElement(loginContainer);
+    hideElement(moviesContainer);
+  }
+});
 
 // -------------------------------------------------------------------------------------------------
 
@@ -46,37 +64,30 @@ function hideElement(element) {
 
 // -------------------------------------------------------------------------------------------------
 
-// Sayfa yüklendiğinde giriş durumunu kontrol et
-document.addEventListener("DOMContentLoaded", () => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
+if (switchToRegister) {
+  switchToRegister.addEventListener("click", (e) => {
+    e.preventDefault();
+    hideElement(loginForm);
+    showElement(registerForm);
+  });
+} else {
+  console.error("switchToRegister bulunamadı!");
+}
 
-  if (isLoggedIn === "true") {
-    // Giriş yapılmışsa index.html'e yönlendir
-    console.log("Kullanıcı oturumu açık. Index sayfasına yönlendiriliyor.");
-    window.location.href = "index.html";
-  } else {
-    console.log("Kullanıcı oturumu kapalı. Login sayfası görüntüleniyor.");
-  }
-});
+if (switchToLogin) {
+  switchToLogin.addEventListener("click", (e) => {
+    e.preventDefault();
+    hideElement(registerForm);
+    showElement(loginForm);
+  });
+} else {
+  console.error("switchToLogin bulunamadı!");
+}
 
-// -------------------------------------------------------------------------------------------------
-
-// Login ve Register form geçişleri
-switchToRegister.addEventListener("click", (e) => {
-  e.preventDefault();
-  hideElement(loginForm);
-  showElement(registerForm);
-});
-
-switchToLogin.addEventListener("click", (e) => {
-  e.preventDefault();
-  hideElement(registerForm);
-  showElement(loginForm);
-});
 
 // -------------------------------------------------------------------------------------------------
 
-// Kayıt işlemi
+// Kayıt İşlemi
 registerForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -89,7 +100,7 @@ registerForm.addEventListener("submit", (e) => {
     return;
   }
 
-  localStorage.setItem(username, JSON.stringify({ username, password }));
+  localStorage.setItem(username, JSON.stringify({ username: username, password: password }));
   alert("Kayıt başarılı! Artık giriş yapabilirsiniz.");
   registerForm.reset();
   hideElement(registerForm);
@@ -98,7 +109,7 @@ registerForm.addEventListener("submit", (e) => {
 
 // -------------------------------------------------------------------------------------------------
 
-// Giriş işlemi
+// Giriş İşlemi
 loginForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -108,63 +119,28 @@ loginForm.addEventListener("submit", (e) => {
 
   if (userData && userData.username === username && userData.password === password) {
     console.log("Giriş başarılı!");
-    alert(`Hoşgeldiniz, ${username}!`);
-    localStorage.setItem("isLoggedIn", "true"); // Kullanıcının giriş durumunu kaydet
-    window.location.href = "index.html"; // Giriş başarılı, index.html'e yönlendir
+    alert(`Hoşgeldiniz, ${username}! Giriş yaptınız.`);
+    localStorage.setItem("isLoggedIn", "true");
+    loginForm.reset();
+
+    // Giriş başarılı, index.html'e yönlendir
+    window.location.href = "index.html";
   } else {
     console.log("Giriş başarısız!");
     alert("Geçersiz kullanıcı adı veya şifre. Lütfen tekrar deneyin.");
   }
 });
 
-// -------------------------------------------------------------------------------------------------
-
-if (logoutButton) {
-  logoutButton.addEventListener("click", () => {
-    localStorage.removeItem("isLoggedIn");
-    alert("Başarıyla çıkış yaptınız!");
-    window.location.href = "login.html";
-  });
-} else {
-  console.error("Çıkış butonu bulunamadı!");
-}
-
-// logoutButton.addEventListener("click", () => {
-//   console.log("Kullanıcı oturumu kapatılıyor.");
-//   localStorage.removeItem("isLoggedIn");
-//   console.log("isLoggedIn kaldırıldı:", localStorage.getItem("isLoggedIn")); // Bu, `null` döndürmeli.
-//   alert("Başarıyla çıkış yaptınız!");
-//   updateMenuVisibility(); // Menü görünürlüğünü güncelle
-//   window.location.href = "login.html"; // Kullanıcıyı giriş ekranına yönlendir
-// });
-
-
-// Kullanıcının oturumu kapatmasını sağla
-// logoutButton.addEventListener("click", () => {
-//   console.log("Kullanıcı oturumu kapatılıyor.");
-//   localStorage.removeItem("isLoggedIn");  // Giriş durumunu belirten "isLoggedIn" anahtarını `localStorage`'dan kaldır
-//   console.log("Oturum kapatma başarılı. Kullanıcı giriş ekranına yönlendiriliyor.");
-//   alert("Başarıyla çıkış yaptınız!");
-//   window.location.href = "login.html";  //sayfa giriş yapılmamış duruma gelir
-// });
+  // Çıkış yap butonu dinleyicisi
+  if (logoutButton) {
+    logoutButton.addEventListener("click", () => {
+      console.log("Kullanıcı oturumu kapatılıyor...");
+      localStorage.removeItem("isLoggedIn");
+      alert("Başarıyla çıkış yaptınız!");
+      window.location.href = "login.html";
+    });
+  } else {
+    console.error("Çıkış yap butonu bulunamadı!");
+  }
 
 // -------------------------------------------------------------------------------------------------
-
-// Çıkış işlemi
-// if (logoutButton) {
-//   logoutButton.addEventListener("click", () => {
-//     console.log("Kullanıcı oturumu kapatılıyor.");
-//     localStorage.removeItem("isLoggedIn"); // Oturum durumunu temizle
-//     alert("Başarıyla çıkış yaptınız!");
-//     window.location.href = "login.html"; // Çıkış sonrası login.html'e yönlendir
-//   });
-// } else {
-//   console.error("Çıkış butonu bulunamadı!");
-// }
-
-// -------------------------------------------------------------------------------------------------
-
-// document.getElementById('logoutButton').addEventListener('click', function() {
-//   alert('Çıkış yapılıyor...');
-//   window.location.href = 'login.html';
-// });

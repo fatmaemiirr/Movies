@@ -1,9 +1,4 @@
-// Login Register Referansları
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
-const switchToRegister = document.getElementById("switch-to-register");
-const switchToLogin = document.getElementById("switch-to-login");
-const loginContainer = document.querySelector(".login-container"); 
+
 // Movies referansları
 const moviesContainer = document.getElementById("movies-container");
 const moviesGrid = document.getElementById("movies-grid");
@@ -22,7 +17,7 @@ const headers = document.querySelector('.headers')
 // people referansı
 const peopleContainer = document.getElementById('people-container');
 const actorsList = document.getElementById('actors-list');
-const mainContent = document.getElementById('main-contend');
+const mainContent = document.getElementById('main-content');
 // Search referansı
 const searchBar = document.getElementById("search-bar");
 const menuContainer = document.getElementById("menu-container");
@@ -84,6 +79,7 @@ async function fetchMovies() {
     moviesGrid.innerHTML = "<p>Filmleri yüklerken bir hata oluştu.</p>";
   }
 }
+
 // -----------------------------------------------------------------------------------------------------
 
 // Swiper'ı başlatma
@@ -114,6 +110,8 @@ function initializeSwiper() {
     },
   });
 }
+
+// -------------------------------------------------------------------------------------------------
 
 // Filmleri ekrana listeleme
 function displayMovies(movies) {
